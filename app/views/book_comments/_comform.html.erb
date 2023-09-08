@@ -1,0 +1,10 @@
+<h2>Add a comment</h2>
+  <%= form_with(model: [book, book_comment], lacal:true) do |f| %>
+   <div>
+     <%= f.label :comment %><br>
+     <%= f.text_area :comment, rows:'5', placeholder: "コメント欄", class: "w-100" %>
+   </div>
+   <div>
+     <%= f.submit%>
+   </div>
+  <% end %>

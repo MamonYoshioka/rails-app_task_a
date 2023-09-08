@@ -1,0 +1,4 @@
+<% @book.book_comments.each do |book_comment| %>
+  <p><%= image_tag book_comment.user.get_profile_image, size: "100x100"%></p>
+  <p>Comment:<%= book_comment.comment %></p>
+<% end %>

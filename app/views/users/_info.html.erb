@@ -1,0 +1,52 @@
+<table class='table'>
+  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <tr>
+	  <th>name</th>
+	  <td><%= user.name %></td>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <td><%= user.introduction %></td>
+  </tr>
+  <tr>
+    <th>follows</th>
+    <td>
+      <%= link_to follows_user_path(user) do %>
+        <h6><%= user.followings.count %></h6>
+      <% end %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>followers</th>
+    <td>
+      <%= link_to followers_user_path(user) do %>
+        <h6><%= user.followers.count %></h6>
+      <% end %>
+    </td>
+  </tr>
+
+</table>
+
+
+<div class='row'>
+  <% if current_user == user %>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  <% else %>
+    <% if current_user != user  %>
+      <% if current_user.following?(user) %>
+        <%= link_to user_relationships_path(user.id), method: :delete, class:"btn btn-info btn-block" do %>
+          <i class="fa-solid fa-user-minus"></i>  フォローをはずす
+        <% end %>
+      <% else %>
+        <%= link_to  user_relationships_path(user.id),  method: :post, class:"btn btn-success btn-block" do %>
+          <i class="fa-solid fa-user-plus"></i>  フォローする
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% end %>
+</div>
+
