@@ -3,11 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @followings = @user.followings
-    @followers = @user.followers
-    @books = @user.books
-    @book = Book.new
-
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -25,6 +20,11 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+
+    @followings = @user.followings
+    @followers = @user.followers
+    @books = @user.books
+    @book = Book.new
 
 
   end

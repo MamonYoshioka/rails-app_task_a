@@ -35,7 +35,7 @@
 
     <div class="posts">
       <%= form_with model: @message, local: false do |f| %>
-        <%= f.text_field :content, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
+        <%= f.text_field :message, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
         <%= f.hidden_field :room_id, value: @room.id %>
         <%= f.submit "投稿", class: "form-submit" %>
       <% end %>

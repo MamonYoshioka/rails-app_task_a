@@ -4,16 +4,16 @@
       <h2>User info</h2>
       <%= render 'info', user: @user %>
       <div class="row">
-        <% if @user != current_user %>
-          <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+        <% unless @user == current_user %>
+          <% if (current_user.following? @user) && (@user.following? current_user) %>
             <% if @isRoom == true %>
-              <%= link_to "go to chat", room_path(roomID), class: "btn btn-primary btn-block" %>
+              <%= link_to "チャットへ", room_path(@roomID), class: "btn btn-primary btn-block" %>
             <% else %>
               <%= form_for @room do |f| %>
                 <%= fields_for @entry do |e| %>
-                  <%= e.hidden_field:user_id, value: @user.id %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
                 <% end %>
-                <%= f.submit "Begin chat", class: "btn btn-primary btn-block" %>
+                <%= f.submit "チャットを始める", class: "btn btn-primary btn-block" %>
               <% end %>
             <% end %>
           <% end %>
