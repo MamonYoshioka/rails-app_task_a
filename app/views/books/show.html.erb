@@ -21,6 +21,7 @@
           <td id="favorite_btn_<%= @book.id %>">
             <%= render "favorites/btn", book: @book %>
           </td>
+          <td><td>view count : <%= @book.read_counts.count %></td></td>
 
 
           <% if @book.user == current_user %>
